@@ -33,6 +33,7 @@
                     <th>Category</th>
                     <th>Description</th>
                     <th>Amount</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +42,13 @@
                     <td>{{ expense.date }}</td>
                     <td>{{ expense.category }}</td>
                     <td>{{ expense.description }}</td>
-                    <td>{{ expense.amount }}</td>
+                    <td>${{ "%.2f"|format(expense.amount) }}</td>
+                    <td>
+                        <a href="/edit/{{ loop.index0 }}">Edit</a>
+                        <form action="/delete/{{ loop.index0 }}" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
